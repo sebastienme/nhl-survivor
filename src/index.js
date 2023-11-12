@@ -1,3 +1,7 @@
+import './style.css';
 import _ from 'lodash';
-import printMe from './dom.js';
-import './data.js';
+import './dom.js';
+import { dataMethods } from './data.js';
+
+//---Initialise page
+dataMethods.getData();
