@@ -93,3 +93,8 @@ a {
     width: 40px;
     height: auto;
 }
+
+.tabulator-cell > img {
+    width: auto;
+    height: 100%;
+}

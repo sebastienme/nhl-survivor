@@ -1,5 +1,6 @@
 import {Tabulator, FormatModule, EditModule, ImportModule} from 'tabulator-tables';
 import Data from './files/Pool_Survivor_2023-2024.csv';
+import { dataMethods } from './data';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule]);
 
@@ -18,11 +19,9 @@ var table = new Tabulator("#pick-table", {
             //formatterParams - parameters set for the column
             //onRendered - function to call when the formatter has been rendered
             let value = cell.getValue();
-            if (value !== undefined && cell.getValue().includes("Boston")) {
-                value = "Le Boston";
-            }
+            let logo = dataMethods.getLogo(value.toLowerCase());
 
-            return value; //return the contents of the cell;
+            return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
         },},
         {title:"Samedi 18 novembre", field:"weekB", formatter:"plaintext"},
         {title:"Samedi 25 novembre", field:"weekC", formatter:"plaintext"},
