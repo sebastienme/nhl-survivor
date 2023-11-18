@@ -5,5 +5,5 @@ import { dataMethods } from './data.js';
 import './table.js';
 
 //---Initialise page
-dataMethods.getData();
+dataMethods.getPickData();
 

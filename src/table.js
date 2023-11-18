@@ -1,23 +1,31 @@
-import {Tabulator, FormatModule, EditModule} from 'tabulator-tables';
+import {Tabulator, FormatModule, EditModule, ImportModule} from 'tabulator-tables';
+import Data from './files/Pool_Survivor_2023-2024.csv';
 
-Tabulator.registerModule([FormatModule, EditModule]);
+Tabulator.registerModule([FormatModule, EditModule, ImportModule]);
 
-//define data
-var tableData = [
-    {id:1, name:"Billy Bob", age:"12", gender:"male", height:1, col:"red", dob:"", cheese:1},
-    {id:2, name:"Mary May", age:"1", gender:"female", height:2, col:"blue", dob:"14/05/1982", cheese:true},
-]
+var arrayData = Data;
+  
 
-var table = new Tabulator("#example-table", {
-    data:tableData, //set initial table data
-    height:"100%",
+//define table
+var table = new Tabulator("#pick-table", {
+    data:arrayData, //Data is the csv files data
+    importFormat:"array",
     columns:[
-        {title:"Name", field:"name"},
-        {title:"Age", field:"age"},
-        {title:"Gender", field:"gender"},
-        {title:"Height", field:"height"},
-        {title:"Favourite Color", field:"col"},
-        {title:"Date Of Birth", field:"dob"},
-        {title:"Cheese Preference", field:"cheese"},
+        {title:"Participation", field:"participation", sorter:"number", width:200, editor:true},
+        {title:"Joueurs", field:"joueur", sorter:"string", hozAlign:"right", formatter:"plaintext"},
+        {title:"Samedi 11 novembre", field:"weekA", formatter:"plaintext", formatter:function(cell, formatterParams, onRendered){
+            //cell - the cell component
+            //formatterParams - parameters set for the column
+            //onRendered - function to call when the formatter has been rendered
+            let value = cell.getValue();
+            if (value !== undefined && cell.getValue().includes("Boston")) {
+                value = "Le Boston";
+            }
+
+            return value; //return the contents of the cell;
+        },},
+        {title:"Samedi 18 novembre", field:"weekB", formatter:"plaintext"},
+        {title:"Samedi 25 novembre", field:"weekC", formatter:"plaintext"},
+        {title:"Samedi 2 décembre", field:"weekD", formatter:"plaintext"}
     ],
 });
