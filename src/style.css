@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 @import  "tabulator-tables";
 
 * {
@@ -18,8 +18,8 @@
     --small-text: 0.8rem;
     --smaller-text: 0.64rem;
     --smallest-text: 0.512rem;
-    --main-color: #424242;
-    --text-color: #f5f5f5;
+    --main-color: #c10828;
+    --text-color: #0d0607;
     --secondary-color: #00b906;
     --third-color: #b9e937;
     --red-color: #b90000;
@@ -33,8 +33,10 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     font-weight: 400;
-    color: var(--text-color);
-    background-color: var(--main-color);
+    color: white;
+    background: rgb(13,6,7);
+    background: linear-gradient(90deg, rgba(13,6,7,1) 0%, rgba(193,8,40,1) 50%, rgba(13,6,7,1) 100%);
+
 }
 
 a {
@@ -83,6 +85,41 @@ a {
     color: inherit;
 }
 
+.header {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header__logo {
+    height: auto;
+    width: 50px;
+    margin: 25px;
+}
+
+.divider {
+    position: relative;
+    width: 250px;
+    border-top: 1px solid white;
+}
+
+.header__title {
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.header__title__text {
+    text-transform: uppercase;
+    font-weight: 900;
+    font-size: var(--h1-text);
+    font-family: 'Epilogue', sans-serif;
+    text-align: center;
+    width: 250px;
+}
+
 .participation {
     display: flex;
     gap: 15px;
@@ -97,4 +134,34 @@ a {
 .tabulator-cell > img {
     width: auto;
     height: 100%;
+}
+
+/*Theme the Tabulator element*/
+#pick-table{
+    background-color:#ccc;
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+
+/*Theme the header*/
+#pick-table .tabulator-header {
+    background-color:#333;
+    color:#fff;
+}
+
+/*Allow column header names to wrap lines*/
+#pick-table .tabulator-header .tabulator-col,
+#pick-table .tabulator-header .tabulator-col-row-handle {
+    white-space: normal;
+}
+
+/*Color the table rows*/
+#pick-table .tabulator-tableHolder .tabulator-table .tabulator-row{
+    color:#fff;
+    background-color: #666;
+}
+
+/*Color even rows*/
+    #pick-table .tabulator-tableHolder .tabulator-table .tabulator-row:nth-child(even) {
+    background-color: #444;
 }

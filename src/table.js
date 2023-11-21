@@ -27,7 +27,7 @@ var table = new Tabulator("#pick-table", {
             //onRendered - function to call when the formatter has been rendered
             
             
-            //formatterParams.width(123)
+            
 
             return cell.getValue(); //return the contents of the cell;
         },},
@@ -49,8 +49,9 @@ var table = new Tabulator("#pick-table", {
 table.on("tableBuilt", function(){
     //table.hideColumn("joueur") //hide the "name" column
     //table.getColumn("joueur").setWidth(50);
-    // var column = table.getColumn("joueur");
-    // column.setWidth(123);
+    var column = table.getColumn("joueur");
+    console.log(column)
+    column.setWidth(123);
     // console.log(column.getWidth())
 }); 
 
