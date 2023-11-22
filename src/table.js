@@ -54,7 +54,8 @@ table.on("tableBuilt", function(){
 
     column.setWidth(123);
     // console.log(column.getWidth())
-    console.log(dataMethods.getMostCommonTeam())
+    dataMethods.getMostCommonTeam();
+
 }); 
 
 

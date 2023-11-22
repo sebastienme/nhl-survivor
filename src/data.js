@@ -108,19 +108,18 @@ export const dataMethods = (() => {
   };
 
   // Private object to store counts for each team
-  const counterObj = {};
-
-
+  const counter = {};
+  
   const incrementCount = (team) => {
-    counterObj[team] = (counterObj[team] || 0) + 1;
+    counter[team] = (counter[team] || 0) + 1;
   };
 
   const getMostCommonTeam = () => {
-    console.log(counterObj)
-    // Find the string with the maximum count
-    const mostCommonTeam = Object.keys(counterObj).reduce((a, b) => counterObj[a] > counterObj[b] ? a : b, '');
-  
+    console.log(counter)
     
+    const mostCommonTeam = Object.keys(counter).length;
+    console.log(mostCommonTeam);
+  
     return mostCommonTeam;
   }
 
