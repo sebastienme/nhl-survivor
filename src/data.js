@@ -104,9 +104,23 @@ export const dataMethods = (() => {
       default:
     }
     return img;
+  };
+
+  const counterObj = {};
+
+  const incrementCount = (team) => {
+    counterObj[str] = (counterObj[str] || 0) + 1;
+  };
+
+  const getMostCommonTeam = () => {
+    const mostCommonTeam = Object.keys(counterObj).reduce((a, b) => counterObj[a] > counterObj[b] ? a : b);
+    return mostCommonTeam;
   }
 
+
   return {
-    getLogo
+    getLogo,
+    incrementCount,
+    getMostCommonTeam
   };
 })();

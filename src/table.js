@@ -35,8 +35,9 @@ var table = new Tabulator("#pick-table", {
             //cell - the cell component
             //formatterParams - parameters set for the column
             //onRendered - function to call when the formatter has been rendered
-            let value = cell.getValue();
-            let logo = dataMethods.getLogo(value.toLowerCase());
+            let value = cell.getValue().toLowerCase();
+            let logo = dataMethods.getLogo(value);
+            dataMethods.counterTeams(value);
 
             return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
         },},
