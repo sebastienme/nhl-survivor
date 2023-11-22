@@ -37,7 +37,7 @@ var table = new Tabulator("#pick-table", {
             //onRendered - function to call when the formatter has been rendered
             let value = cell.getValue().toLowerCase();
             let logo = dataMethods.getLogo(value);
-            dataMethods.counterTeams(value);
+            dataMethods.incrementCount(value);
 
             return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
         },},
@@ -51,9 +51,10 @@ table.on("tableBuilt", function(){
     //table.hideColumn("joueur") //hide the "name" column
     //table.getColumn("joueur").setWidth(50);
     var column = table.getColumn("joueur");
-    console.log(column)
+
     column.setWidth(123);
     // console.log(column.getWidth())
+    console.log(dataMethods.getMostCommonTeam())
 }); 
 
 
