@@ -1,7 +1,16 @@
-import { editDom } from './dom';
+import Data from './files/team.csv';
+
+// Initialise the list of all the NHL teams
+export var teamsList = [];
+
+// NHL team object
+const Team = (team, count) => {
+  return { team, count};
+};
+
 
 export const dataMethods = (() => {
-  //Get logo png image
+  // Get logo png image
   const getLogo = (team) => {
     let img;
     switch (true) {
@@ -103,29 +112,44 @@ export const dataMethods = (() => {
         break;
       default:
     }
-
     return img;
   };
-
-  // Private object to store counts for each team
-  const counter = {};
   
+  // Initialise NHL teams list
+  const initialiseTeamsList = () => {
+    for (let i in Data) {
+      teamsList.push(Team(Data[i][0], parseInt(Data[i][1])));
+    }
+  }
+  
+  // Increment the count for each team passed as parameter
   const incrementCount = (team) => {
-    counter[team] = (counter[team] || 0) + 1;
+    let teamObject = teamsList.find(obj => obj.team === team);
+    if (teamObject) {
+        teamObject.count++;
+        getMostCommonTeam(teamObject);
+    }
+
   };
 
-  const getMostCommonTeam = () => {
-    console.log(counter)
-    
-    const mostCommonTeam = Object.keys(counter).length;
-    console.log(mostCommonTeam);
-  
-    return mostCommonTeam;
+  // Find the team with the maximum count
+  const getMostCommonTeam = (teamObject) => {
+    let maxTeam = { team: "", count: 0 };
+
+    for (let i = 0; i < teamsList.length; i++) {
+      teamObject = teamsList[i];
+      if (teamObject.count > maxTeam.count) {
+          maxTeam = teamObject;
+      }
+    }
+    console.log("Max team = " + maxTeam.team)
+    return maxTeam.team;
   }
 
 
   return {
     getLogo,
+    initialiseTeamsList,
     incrementCount,
     getMostCommonTeam
   };
