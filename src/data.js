@@ -127,30 +127,25 @@ export const dataMethods = (() => {
     let teamObject = teamsList.find(obj => obj.team === team);
     if (teamObject) {
         teamObject.count++;
-        getMostCommonTeam(teamObject);
     }
-
   };
 
-  // Find the team with the maximum count
-  const getMostCommonTeam = (teamObject) => {
+  const getMostCommmonTeam = () => {
     let maxTeam = { team: "", count: 0 };
 
     for (let i = 0; i < teamsList.length; i++) {
-      teamObject = teamsList[i];
+      let teamObject = teamsList[i];
       if (teamObject.count > maxTeam.count) {
           maxTeam = teamObject;
       }
     }
-    console.log("Max team = " + maxTeam.team)
-    return maxTeam.team;
+    return maxTeam.team;   
   }
-
 
   return {
     getLogo,
     initialiseTeamsList,
     incrementCount,
-    getMostCommonTeam
+    getMostCommmonTeam
   };
 })();

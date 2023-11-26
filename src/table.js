@@ -1,8 +1,8 @@
-import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule} from 'tabulator-tables';
+import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule} from 'tabulator-tables';
 import Data from './files/Pool_Survivor_2023-2024.csv';
 import { dataMethods } from './data';
 
-Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule]);
+Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
 var arrayData = Data;
   
@@ -16,6 +16,7 @@ function paramLookup(cell){
 //define table
 var table = new Tabulator("#pick-table", {
     data:arrayData, //Data is the csv files data
+    reactiveData:true, //enable reactive data
     importFormat:"array",
     frozenRows:0,
     rowHeight:40,
@@ -51,11 +52,13 @@ table.on("tableBuilt", function(){
     //table.hideColumn("joueur") //hide the "name" column
     //table.getColumn("joueur").setWidth(50);
     var column = table.getColumn("joueur");
-
+    console.log("built")
     column.setWidth(123);
     // console.log(column.getWidth())
-   
 
-}); 
+});
 
+table.on("dataProcessed", function(){
+    console.log(dataMethods.getMostCommmonTeam())
+});
 
