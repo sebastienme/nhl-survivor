@@ -120,6 +120,11 @@ a {
     width: 250px;
 }
 
+.header__stats-section__list__item__logo {
+    width: 50px;
+    height: auto;
+}
+
 .participation {
     display: flex;
     gap: 15px;
@@ -157,11 +162,11 @@ a {
 
 /*Color the table rows*/
 #pick-table .tabulator-tableHolder .tabulator-table .tabulator-row{
-    color:#fff;
+    color:#1403ff;
     background-color: #666;
 }
 
 /*Color even rows*/
-    #pick-table .tabulator-tableHolder .tabulator-table .tabulator-row:nth-child(even) {
+#pick-table .tabulator-tableHolder .tabulator-table .tabulator-row:nth-child(even) {
     background-color: #444;
 }

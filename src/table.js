@@ -6,13 +6,6 @@ Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModu
 
 var arrayData = Data;
   
-//define lookup function
-function paramLookup(cell){
-    //cell - the cell component
-    
-    //do some processing and return the param object
-    return {width:50};
-}
 //define table
 var table = new Tabulator("#pick-table", {
     data:arrayData, //Data is the csv files data
@@ -32,19 +25,16 @@ var table = new Tabulator("#pick-table", {
 
             return cell.getValue(); //return the contents of the cell;
         },},
-        {title:"Samedi 11 novembre", field:"weekA", hozAlign:"center", vertAlign:"middle", width:155, formatter:function(cell, formatterParams, onRendered){
-            //cell - the cell component
-            //formatterParams - parameters set for the column
-            //onRendered - function to call when the formatter has been rendered
+        {title:"11", field:"weekA", hozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             let value = cell.getValue().toLowerCase();
             let logo = dataMethods.getLogo(value);
             dataMethods.incrementCount(value);
 
             return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
         },},
-        {title:"Samedi 18 novembre", field:"weekB", formatter:"plaintext"},
-        {title:"Samedi 25 novembre", field:"weekC", formatter:"plaintext"},
-        {title:"Samedi 2 décembre", field:"weekD", formatter:"plaintext"}
+        {title:"18", field:"weekB", hozAlign:"center", vertAlign:"middle", width:50},
+        {title:"25", field:"weekC", hozAlign:"center", vertAlign:"middle", width:50},
+        {title:"2", field:"weekD", hozAlign:"center", vertAlign:"middle", width:50}
     ],
 });
 
@@ -59,6 +49,30 @@ table.on("tableBuilt", function(){
 });
 
 table.on("dataProcessed", function(){
-    console.log(dataMethods.getMostCommmonTeam())
+    let top3teams = dataMethods.getMostCommmonTeams();
+
+    //define some sample data
+    var tabledata = [
+        {id:1, position:"1", equipe:`${top3teams[0].team}`, choisie:`${top3teams[0].count}`},
+        {id:2, position:"2", equipe:`${top3teams[1].team}`, choisie:`${top3teams[1].count}`},
+        {id:3, position:"3", equipe:`${top3teams[2].team}`, choisie:`${top3teams[2].count}`},
+    ];
+    
+    //create Tabulator on DOM element with id "example-table"
+    var statsTable = new Tabulator("#stats-table", {
+        height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
+        data:tabledata, //assign data to table
+        rowHeight:40,
+        columns:[ //Define Table Columns
+            {title:"Position", field:"position", width:25},
+            {title:"Équipe", field:"equipe", hozAlign:"left",width:50, formatter:function(cell, formatterParams, onRendered){
+                let value = cell.getValue();
+                let logo = dataMethods.getLogo(value);
+                return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
+            },},
+            {title:"Choisie", field:"choisie"},
+        ],
+    });
+
 });
 

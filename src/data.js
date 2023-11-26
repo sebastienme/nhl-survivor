@@ -1,11 +1,11 @@
 import Data from './files/team.csv';
-
+import { editDom } from './dom';
 // Initialise the list of all the NHL teams
 export var teamsList = [];
 
 // NHL team object
-const Team = (team, count) => {
-  return { team, count};
+const Team = (team, count, properName) => {
+  return { team, count, properName};
 };
 
 
@@ -118,7 +118,7 @@ export const dataMethods = (() => {
   // Initialise NHL teams list
   const initialiseTeamsList = () => {
     for (let i in Data) {
-      teamsList.push(Team(Data[i][0], parseInt(Data[i][1])));
+      teamsList.push(Team(Data[i][0], parseInt(Data[i][1]), Team(Data[i][2])));
     }
   }
   
@@ -130,22 +130,22 @@ export const dataMethods = (() => {
     }
   };
 
-  const getMostCommmonTeam = () => {
-    let maxTeam = { team: "", count: 0 };
+  const getMostCommmonTeams = () => {
+    const sortedTeams = [...teamsList];
 
-    for (let i = 0; i < teamsList.length; i++) {
-      let teamObject = teamsList[i];
-      if (teamObject.count > maxTeam.count) {
-          maxTeam = teamObject;
-      }
-    }
-    return maxTeam.team;   
+    // Sort the teams in descending order based on count
+    sortedTeams.sort((a, b) => b.count - a.count);
+
+    // Take the top 3 teams
+    const top3Teams = sortedTeams.slice(0, 3);
+
+    return top3Teams.map(team => ({ team: team.team, count: team.count }));
   }
 
   return {
     getLogo,
     initialiseTeamsList,
     incrementCount,
-    getMostCommmonTeam
+    getMostCommmonTeams
   };
 })();
