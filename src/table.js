@@ -1,6 +1,7 @@
 import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule} from 'tabulator-tables';
 import Data from './files/Pool_Survivor_2023-2024.csv';
-import { dataMethods } from './data';
+import { dataMethods, playersCount } from './data';
+import { editDom } from './dom';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
@@ -14,8 +15,8 @@ var table = new Tabulator("#pick-table", {
     frozenRows:0,
     rowHeight:40,
     columns:[
-        {title:"Participation", field:"participation", hozAlign:"center", vertAlign:"middle", sorter:"number", width:40, frozen:true},
-        {title:"Joueurs", field:"joueur", sorter:"string", headerHozAlign:"center", hozAlign:"left", vertAlign:"middle", formatter:"plaintext", frozen:true,formatter:function(cell, formatterParams, onRendered){
+        {title:"#", field:"participation", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", sorter:"number", width:40, frozen:true},
+        {title:"JOUEURS", field:"joueur", sorter:"string", headerHozAlign:"center", hozAlign:"left", vertAlign:"middle", formatter:"plaintext", frozen:true,formatter:function(cell, formatterParams, onRendered){
             //cell - the cell component
             //formatterParams - parameters set for the column
             //onRendered - function to call when the formatter has been rendered
@@ -25,27 +26,19 @@ var table = new Tabulator("#pick-table", {
 
             return cell.getValue(); //return the contents of the cell;
         },},
-        {title:"11", field:"weekA", hozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
+        {title:"11", field:"weekA", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             let value = cell.getValue().toLowerCase();
             let logo = dataMethods.getLogo(value);
             dataMethods.incrementCount(value);
+            dataMethods.incrementPlayersCount();
+            cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
 
             return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
         },},
-        {title:"18", field:"weekB", hozAlign:"center", vertAlign:"middle", width:50},
-        {title:"25", field:"weekC", hozAlign:"center", vertAlign:"middle", width:50},
-        {title:"2", field:"weekD", hozAlign:"center", vertAlign:"middle", width:50}
+        {title:"18", field:"weekB", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50},
+        {title:"25", field:"weekC", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50},
+        {title:"2", field:"weekD", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50}
     ],
-});
-
-table.on("tableBuilt", function(){
-    //table.hideColumn("joueur") //hide the "name" column
-    //table.getColumn("joueur").setWidth(50);
-    var column = table.getColumn("joueur");
-    console.log("built")
-    column.setWidth(123);
-    // console.log(column.getWidth())
-
 });
 
 table.on("dataProcessed", function(){
@@ -53,26 +46,39 @@ table.on("dataProcessed", function(){
 
     //define some sample data
     var tabledata = [
-        {id:1, position:"1", equipe:`${top3teams[0].team}`, choisie:`${top3teams[0].count}`},
-        {id:2, position:"2", equipe:`${top3teams[1].team}`, choisie:`${top3teams[1].count}`},
-        {id:3, position:"3", equipe:`${top3teams[2].team}`, choisie:`${top3teams[2].count}`},
+        {id:1, position:"1", equipe:`${top3teams[0].team}`, pick:`${top3teams[0].count}`},
+        {id:2, position:"2", equipe:`${top3teams[1].team}`, pick:`${top3teams[1].count}`},
+        {id:3, position:"3", equipe:`${top3teams[2].team}`, pick:`${top3teams[2].count}`},
     ];
     
     //create Tabulator on DOM element with id "example-table"
     var statsTable = new Tabulator("#stats-table", {
-        height:205, // set height of table (in CSS or here), this enables the Virtual DOM and improves render speed dramatically (can be any valid css height value)
         data:tabledata, //assign data to table
-        rowHeight:40,
+        layout:"fitColumns",
+        rowHeight:50,
+        rowFormatter:function(row){
+            var data = row.getData(); //get data object for row
+    
+            if(data.equipe == `${top3teams[0].team}`){
+                row.getElement().classList.add(top3teams[0].team.replace(/\s+/g, '-').toLowerCase());
+            } else if (data.equipe == `${top3teams[1].team}`) {
+                row.getElement().classList.add(top3teams[1].team.replace(/\s+/g, '-').toLowerCase());
+            } else {
+                row.getElement().classList.add(top3teams[2].team.replace(/\s+/g, '-').toLowerCase());
+            }
+        },
         columns:[ //Define Table Columns
-            {title:"Position", field:"position", width:25},
-            {title:"Équipe", field:"equipe", hozAlign:"left",width:50, formatter:function(cell, formatterParams, onRendered){
+            {title:"#", field:"position", width:25, headerHozAlign:"center", hozAlign:"center", vertAlign:"middle"},
+            {title:"ÉQUIPE", field:"equipe", headerHozAlign:"center", vertAlign:"middle", formatter:function(cell, formatterParams, onRendered){
                 let value = cell.getValue();
                 let logo = dataMethods.getLogo(value);
-                return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
+                return `<img src='/src/images/${logo}'><div>${value}</div>`; //return the contents of the cell;
             },},
-            {title:"Choisie", field:"choisie"},
+            {title:"PICK", field:"pick", width:55, hozAlign:"center", headerHozAlign:"center", vertAlign:"middle"},
         ],
     });
 
+    statsTable.on("tableBuilt", function(){
+        editDom.addPlayersCount(playersCount);
+    })
 });
-

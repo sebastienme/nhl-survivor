@@ -1,13 +1,11 @@
-import { dataMethods } from "./data";
 
 export const editDom = (() => {
-    const addMostCommonTeamPhoto = (team) => {
-        const img = document.querySelector('.header__stats-section__list__item__logo.most-common');
-        img.src = `/src/images/${dataMethods.getLogo(team)}`;
+    const addPlayersCount = (count) => {
+        document.querySelector('.header__stats-section__list__item__resutl').innerHTML = count;
     }
 
     return {
-        addMostCommonTeamPhoto
+        addPlayersCount
     }
 })();
 

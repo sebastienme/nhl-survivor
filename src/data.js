@@ -2,6 +2,7 @@ import Data from './files/team.csv';
 import { editDom } from './dom';
 // Initialise the list of all the NHL teams
 export var teamsList = [];
+export var playersCount = 0;
 
 // NHL team object
 const Team = (team, count, properName) => {
@@ -114,6 +115,11 @@ export const dataMethods = (() => {
     }
     return img;
   };
+
+  // Count number of players left in the pool
+  const incrementPlayersCount = () => {
+    playersCount++;
+  }
   
   // Initialise NHL teams list
   const initialiseTeamsList = () => {
@@ -144,6 +150,7 @@ export const dataMethods = (() => {
 
   return {
     getLogo,
+    incrementPlayersCount,
     initialiseTeamsList,
     incrementCount,
     getMostCommmonTeams

@@ -94,7 +94,7 @@ a {
 
 .header__logo {
     height: auto;
-    width: 50px;
+    width: 150px;
     margin: 25px;
 }
 
@@ -120,6 +120,19 @@ a {
     width: 250px;
 }
 
+.header__stats-section {
+    width: -webkit-fill-available;
+    margin: 15px 25px 15px 25px;
+}
+
+.header__stats-section__list {
+    margin-top: 15px;
+}
+
+.header__stats-section__list__item {
+    display: flex;
+}
+
 .header__stats-section__list__item__logo {
     width: 50px;
     height: auto;
@@ -136,21 +149,48 @@ a {
     height: auto;
 }
 
+.tabulator {
+    border-color: #c5c5c5;
+} 
+
+.tabulator .tabulator-header,
+.tabulator .tabulator-header .tabulator-col {
+    border-color: #c5c5c5;
+    color: #dfdfdf;
+    background-color: #1d191a;
+}
+
+#stats-table .tabulator-cell {
+    gap: 15px;
+    padding: 0;
+    color:#fff;
+    font-weight: 500;
+}
+
+#stats-table .tabulator-cell > div {
+    text-transform: uppercase;
+}
+
+#stats-table .tabulator-cell > img {
+    width: auto;
+    height: 100%;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
 .tabulator-cell > img {
     width: auto;
     height: 100%;
 }
 
 /*Theme the Tabulator element*/
-#pick-table{
-    background-color:#ccc;
-    border: 1px solid #333;
-    border-radius: 10px;
+#pick-table {
+    border: 1px solid #c5c5c5;
 }
 
 /*Theme the header*/
-#pick-table .tabulator-header {
-    background-color:#333;
+.tabulator-header {
+    background-color:#1d191a;
     color:#fff;
 }
 
@@ -169,4 +209,31 @@ a {
 /*Color even rows*/
 #pick-table .tabulator-tableHolder .tabulator-table .tabulator-row:nth-child(even) {
     background-color: #444;
+}
+
+
+
+/* NHL TEAMS COLOR */
+#stats-table .los-angeles-kings {
+    background-color: #5b5b5d;
+}
+
+.los-angeles-kings img, .los-angeles-kings {
+    background-color: #b1b6ba;
+}
+
+#stats-table .boston-bruins {
+    background-color: #b48518;
+}
+
+.boston-bruins img, .boston-bruins {
+    background-color: #fdb91e;
+}
+
+#stats-table .new-york-islanders {
+    background-color: #0b2643;
+}
+
+.new-york-islanders img, .new-york-islanders {
+    background-color: #00478c;
 }
