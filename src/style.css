@@ -211,15 +211,26 @@ a {
     background-color: #444;
 }
 
-
-
-/* NHL TEAMS COLOR */
-#stats-table .los-angeles-kings {
-    background-color: #5b5b5d;
+/* Color the border cells */
+.tabulator-row .tabulator-cell {
+    border-bottom: 1px solid #c5c5c5;
 }
 
-.los-angeles-kings img, .los-angeles-kings {
-    background-color: #b1b6ba;
+/* NHL TEAMS COLOR */
+#stats-table .anaheim-ducks {
+    background-color: #55472d;
+}
+
+.anaheim-ducks img, .anaheim-ducks {
+    background-color: #b6985a;
+}
+
+#stats-table .arizona-coyotes {
+    background-color: #390b18;
+}
+
+.arizona-coyote img, .arizona-coyotes {
+    background-color: #7a0022;
 }
 
 #stats-table .boston-bruins {
@@ -230,10 +241,234 @@ a {
     background-color: #fdb91e;
 }
 
+#stats-table .buffalo-sabres {
+    background-color: #0a1c40;
+}
+
+.buffalo-sabres img, .buffalo-sabres {
+    background-color: #023089;
+}
+
+#stats-table .calgary-flames {
+    background-color: #68111e;
+}
+
+.calgary-flames img, .calgary-flames {
+    background-color: #e30a2b;
+}
+
+#stats-table .carolina-hurricanes {
+    background-color: #8c2626;
+}
+
+.carolina-hurricanes img, .carolina-hurricanes {
+    background-color: #c8102e;
+}
+
+#stats-table .chicago-blackhawks {
+    background-color: #670e1c;
+}
+
+.chicago-blackhawks img, .chicago-blackhawks {
+    background-color: #e30829;
+}
+
+#stats-table .colorado-avalanche {
+    background-color: #2f1214;
+}
+
+.colorado-avalanche img, .colorado-avalanche {
+    background-color: #6f263d;
+}
+
+#stats-table .columbus-blue-jackets {
+    background-color: #091c32;
+}
+
+.columbus-blue-jackets img, .columbus-blue-jackets {
+    background-color: #032d65;
+}
+
+#stats-table .dallas-stars {
+    background-color: #174233;
+}
+
+.dallas-stars img, .dallas-stars {
+    background-color: #00704a;
+}
+
+#stats-table .detroit-red-wings {
+    background-color: #640c18;
+}
+
+.detroit-red-wings img, .detroit-red-wings {
+    background-color: #e30524;
+}
+
+#stats-table .edmonton-oilers {
+    background-color: #001131;
+}
+
+.edmonton-oilers img, .edmonton-oilers {
+    background-color: #00205b;
+}
+
+#stats-table .florida-panthers {
+    background-color: #920b21;
+}
+
+.florida-panthers img, .florida-panthers {
+    background-color: #c8102e;
+}
+
+#stats-table .seattle-kraken {
+    background-color: #0a101e;
+}
+
+.seattle-kraken img, .seattle-kraken {
+    background-color: #000f32;
+}
+
+#stats-table .los-angeles-kings {
+    background-color: #5b5b5d;
+}
+
+.los-angeles-kings img, .los-angeles-kings {
+    background-color: #b1b6ba;
+}
+
+#stats-table .minnesota-wild {
+    background-color: #002217;
+}
+
+.minnesota-wild img, .minnesota-wild {
+    background-color: #025736;
+}
+
+#stats-table .montreal-canadiens {
+    background-color: #570d1a;
+}
+
+.montreal-canadiens img, .montreal-canadiens {
+    background-color: #c20828;
+}
+
+#stats-table .nashville-predators {
+    background-color: #71541a;
+}
+
+.nashville-predators img, .nashville-predators {
+    background-color: #fdb623;
+}
+
+#stats-table .new-jersey-devils {
+    background-color: #640c18;
+}
+
+.new-jersey-devils img, .new-jersey-devils {
+    background-color: #e10623;
+}
+
 #stats-table .new-york-islanders {
     background-color: #0b2643;
 }
 
 .new-york-islanders img, .new-york-islanders {
     background-color: #00478c;
+}
+
+#stats-table .new-york-rangers {
+    background-color: #183859;
+}
+
+.new-york-rangers img, .new-york-rangers {
+    background-color: #0056a8;
+}
+
+#stats-table .ottawa-senators {
+    background-color: #650c19;
+}
+
+.ottawa-senators img, .ottawa-senators {
+    background-color: #e30526;
+}
+
+#stats-table .philadelphia-flyers {
+    background-color: #6f290b;
+}
+
+.philadelphia-flyers img, .philadelphia-flyers {
+    background-color: #fc4c02;
+}
+
+#stats-table .pittsburgh-penguins {
+    background-color: #1b1b1c;
+}
+
+.pittsburgh-penguins img, .pittsburgh-penguins {
+    background-color: #0e0e0f;
+}
+
+#stats-table .san-jose-sharks {
+    background-color: #0a363d;
+}
+
+.san-jose-sharks img, .san-jose-sharks {
+    background-color: #006d80;
+}
+
+#stats-table .st-louis-blues {
+    background-color: #181a39;
+}
+
+.st-louis-blues img, .st-louis-blues {
+    background-color: #003087;
+}
+
+#stats-table .tampa-bay-lightning {
+    background-color: #0c0e24;
+}
+
+.tampa-bay-lightning img, .tampa-bay-lightning {
+    background-color: #00205b;
+}
+
+#stats-table .toronto-maple-leafs {
+    background-color: #151722;
+}
+
+.toronto-maple-leafs img, .toronto-maple-leafs {
+    background-color: #00205b;
+}
+
+#stats-table .vancouver-canucks {
+    background-color: #091d2e;
+}
+
+.vancouver-canucks img, .vancouver-canucks {
+    background-color: #012d53;
+}
+
+#stats-table .vegas-golden-knights {
+    background-color: #53472d;
+}
+
+.vegas-golden-knights img, .vegas-golden-knights {
+    background-color: #b7975c;
+}
+
+#stats-table .washington-capitals {
+    background-color: #660d1b;
+}
+
+.washington-capitals img, .washington-capitals {
+    background-color: #e30628;
+}
+
+#stats-table .winnipeg-jets {
+    background-color: #091c32;
+}
+
+.winnipeg-jets img, .winnipeg-jets {
+    background-color: #002e63;
 }
