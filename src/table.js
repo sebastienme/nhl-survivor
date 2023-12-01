@@ -5,7 +5,9 @@ import { editDom } from './dom';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
-var arrayData = Data;
+let arrayData = Data;
+let classToggle = ['currentPlayer', 'a-player'];
+
   
 //define table
 var table = new Tabulator("#pick-table", {
@@ -14,7 +16,25 @@ var table = new Tabulator("#pick-table", {
     importFormat:"array",
     frozenRows:0,
     rowHeight:40,
+    rowFormatter:function(row){
+        let data = row.getData(); //get data object for row
+        let currentPlayer = data.joueur;
+        classToggle[0] = currentPlayer;
+
+        row.getElement().classList.add(classToggle[1]);
+        
+        if (row.getNextRow() && row.getNextRow().getData().joueur != currentPlayer) {
+            if (classToggle[1] == 'a-player') {
+                classToggle[1] = 'another-player';
+            } else {
+                classToggle[1] = 'a-player';
+            }
+            
+        }
+        
+    },
     columns:[
+        {title:"win", field:"win", frozen:true, visible:false},
         {title:"#", field:"participation", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", sorter:"number", width:40, frozen:true},
         {title:"JOUEURS", field:"joueur", sorter:"string", headerHozAlign:"center", hozAlign:"left", vertAlign:"middle", formatter:"plaintext", frozen:true,formatter:function(cell, formatterParams, onRendered){
             //cell - the cell component

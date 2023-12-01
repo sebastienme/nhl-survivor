@@ -94,7 +94,7 @@ export const dataMethods = (() => {
         img = 'st-louis-logo.png';
         break;
       case team.includes('tampa'):
-        img = 'tampa-bay-logo.png';
+        img = 'TBL_dark.svg';
         break;
       case team.includes('toronto'):
         img = 'toronto-logo.png';

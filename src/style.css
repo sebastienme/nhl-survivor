@@ -200,15 +200,13 @@ a {
     white-space: normal;
 }
 
-/*Color the table rows*/
-#pick-table .tabulator-tableHolder .tabulator-table .tabulator-row{
-    color:#1403ff;
-    background-color: #666;
+/*Color the table rows base on player name*/
+#pick-table .tabulator-table .tabulator-row.a-player {
+    background-color: #ffffff;
 }
 
-/*Color even rows*/
-#pick-table .tabulator-tableHolder .tabulator-table .tabulator-row:nth-child(even) {
-    background-color: #444;
+#pick-table .tabulator-table .tabulator-row.another-player {
+    background-color: #EFEFEF;
 }
 
 /* Color the border cells */
@@ -223,6 +221,11 @@ a {
 
 #stats-table .tabulator-row:last-of-type .tabulator-cell {
     border-bottom: none;
+}
+
+.tabulator-row .tabulator-cell.tabulator-frozen.tabulator-frozen-right,
+.tabulator .tabulator-header .tabulator-frozen.tabulator-frozen-right {
+    border-left: 1px;
 }
 
 /* NHL TEAMS COLOR */
