@@ -216,6 +216,15 @@ a {
     border-bottom: 1px solid #c5c5c5;
 }
 
+#stats-table .tabulator-row .tabulator-cell:last-of-type,
+#stats-table .tabulator-header .tabulator-col:last-of-type {
+    border-right: none;
+}
+
+#stats-table .tabulator-row:last-of-type .tabulator-cell {
+    border-bottom: none;
+}
+
 /* NHL TEAMS COLOR */
 #stats-table .anaheim-ducks {
     background-color: #55472d;
