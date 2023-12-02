@@ -1,12 +1,12 @@
 import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule} from 'tabulator-tables';
-import Data from './files/week3_results.csv';
+import Data from './files/week2_results.csv';
 import { dataMethods, playersCount } from './data';
 import { editDom } from './dom';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
 // at wich week are we in the pool
-const week = 3;
+const week = 2;
 // is the file a results file or pick file
 const isResultsFile = true;
 // Data is import from csv file
@@ -37,39 +37,43 @@ const updateNextRowMetrics = (row) => {
 const checkIfTeamLost = (row) => {
     const data = row.getData();
 
+    const addGrayscaleEffect = (cell) => {
+        cell.getElement().classList.add('grayscale-effect');
+    };
+
     switch (week) {
         case 1:
             if (isResultsFile && data.win == 0) {
-                row.getCell('weekA').getElement().classList.add('grayscale-effect');
+                addGrayscaleEffect(row.getCell('weekA'));
             }
             break;
         case 2:
             if (isResultsFile && data.win == 0) {
-                row.getCell('weekB').getElement().classList.add('grayscale-effect');
+                addGrayscaleEffect(row.getCell('weekB'));
                 if (data.weekB.trim() === "") {
-                    row.getCell('weekA').getElement().classList.add('grayscale-effect');
+                    addGrayscaleEffect(row.getCell('weekA'));
                 }
             } else if (!isResultsFile && data.weekB.trim() === "") {
-                row.getCell('weekA').getElement().classList.add('grayscale-effect');
+                addGrayscaleEffect(row.getCell('weekA'));
             }
             break;
         case 3:
             if (isResultsFile && data.win == 0) {
-                row.getCell('weekC').getElement().classList.add('grayscale-effect');
+                addGrayscaleEffect(row.getCell('weekC'));
                 if (data.weekC.trim() === "") {
-                    row.getCell('weekB').getElement().classList.add('grayscale-effect');
+                    addGrayscaleEffect(row.getCell('weekB'));
                 }
                 if (data.weekB.trim() === "") {
-                    row.getCell('weekA').getElement().classList.add('grayscale-effect');
+                    addGrayscaleEffect(row.getCell('weekA'));
                 }
             } else if (!isResultsFile && data.weekC.trim() === "") {
-                row.getCell('weekB').getElement().classList.add('grayscale-effect');
+                addGrayscaleEffect(row.getCell('weekB'));
                 if (data.weekB.trim() === "") {
-                    row.getCell('weekA').getElement().classList.add('grayscale-effect');
+                    addGrayscaleEffect(row.getCell('weekA'));
                 }
             }
             break;
-         case 4:
+        case 4:
             // logic for week 4
             break;
         default:
