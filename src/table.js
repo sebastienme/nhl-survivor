@@ -1,15 +1,53 @@
 import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule} from 'tabulator-tables';
-import Data from './files/Pool_Survivor_2023-2024.csv';
+import Data from './files/week2.csv';
 import { dataMethods, playersCount } from './data';
 import { editDom } from './dom';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
+// at wich week are we in the pool
+const week = 2;
 // Data is import from csv file
 let arrayData = Data;
 // initialisation of the player data
 let playerMetrics = ['currentPlayer', 'a-player', 1];
-  
+
+// Function to update player metrics based on the current row
+const updatePlayerMetrics = (row) => {
+    const data = row.getData();
+    const element = row.getElement();
+    const currentPlayer = data.joueur;
+    playerMetrics[0] = currentPlayer;
+    element.classList.add(playerMetrics[1]);
+    data.participation = playerMetrics[2];
+}
+
+// Function to update player metrics for the next row
+const updateNextRowMetrics = (row) => {
+    if (row.getNextRow() && row.getNextRow().getData().joueur !== playerMetrics[0]) {
+        playerMetrics[1] = (playerMetrics[1] === 'a-player') ? 'another-player' : 'a-player';
+        playerMetrics[2] = 1;
+    } else {
+        playerMetrics[2]++;
+    }
+}
+
+// Function that check if team lost and output the team logo in gray
+const checkIfTeamLost = (row) => {
+    const data = row.getData();
+
+    switch (week) {
+        case 2:
+            if (data.weekB.trim() === "") {
+                row.getCell('weekA').getElement().classList.add('grayscale-effect');
+            }
+          break;
+        case 3:
+          break;
+          default:
+    };
+} 
+
 // define table
 var table = new Tabulator("#pick-table", {
     data:arrayData, //Data is the csv files data
@@ -18,25 +56,9 @@ var table = new Tabulator("#pick-table", {
     frozenRows:0,
     rowHeight:40,
     rowFormatter:function(row){
-        let data = row.getData(); //get data object for row
-        let currentPlayer = data.joueur;
-        playerMetrics[0] = currentPlayer;
-
-        row.getElement().classList.add(playerMetrics[1]);
-        data.participation = playerMetrics[2];
-        
-        if (row.getNextRow() && row.getNextRow().getData().joueur != currentPlayer) {
-            if (playerMetrics[1] == 'a-player') {
-                playerMetrics[1] = 'another-player';
-            } else {
-                playerMetrics[1] = 'a-player';
-            }
-            playerMetrics[2] = 1;   
-        } else {
-            let count = playerMetrics[2];
-            count = count + 1;
-            playerMetrics[2] = count;
-        }
+        updatePlayerMetrics(row);
+        updateNextRowMetrics(row);
+        checkIfTeamLost(row);
     },
     columns:[
         {title:"win", field:"win", frozen:true, visible:false},
@@ -50,8 +72,21 @@ var table = new Tabulator("#pick-table", {
             cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
 
             return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
-        },},
-        {title:"18", field:"weekB", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50},
+        }},
+        {title:"18", field:"weekB", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
+            let stringToReturn = '';
+            let value = cell.getValue();
+
+            if (!(value.trim() === "")) {
+                value = value.toLowerCase();
+                let logo = dataMethods.getLogo(value);
+                dataMethods.incrementCount(value);
+                dataMethods.incrementPlayersCount();
+                cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
+                stringToReturn = `<img src='/src/images/${logo}'>`;
+            }
+            return stringToReturn; //return the contents of the cell;
+        }},
         {title:"25", field:"weekC", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50},
         {title:"2", field:"weekD", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50}
     ],

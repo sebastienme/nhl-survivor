@@ -228,6 +228,9 @@ a {
     border-left: 1px;
 }
 
+.grayscale-effect {
+    filter: grayscale(100%);
+  }
 /* NHL TEAMS COLOR */
 #stats-table .anaheim-ducks {
     background-color: #55472d;
