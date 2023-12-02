@@ -7,6 +7,8 @@ Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModu
 
 // at wich week are we in the pool
 const week = 2;
+// is the file a results file or pick file
+const resultsFile = false;
 // Data is import from csv file
 let arrayData = Data;
 // initialisation of the player data
@@ -32,21 +34,33 @@ const updateNextRowMetrics = (row) => {
     }
 }
 
-// Function that check if team lost and output the team logo in gray
 const checkIfTeamLost = (row) => {
     const data = row.getData();
 
     switch (week) {
+        case 1:
+            // logic for week 1
+            break;
         case 2:
-            if (data.weekB.trim() === "") {
+            if (resultsFile && data.win == 0) {
+                row.getCell('weekB').getElement().classList.add('grayscale-effect');
+                if (data.weekB.trim() === "") {
+                    row.getCell('weekA').getElement().classList.add('grayscale-effect');
+                }
+            } else if (!resultsFile && data.weekB.trim() === "") {
                 row.getCell('weekA').getElement().classList.add('grayscale-effect');
             }
-          break;
+            break;
         case 3:
-          break;
-          default:
-    };
-} 
+            // logic for week 3
+            break;
+         case 4:
+            // logic for week 4
+            break;
+        default:
+            // Default case for weeks other than the specified ones
+    }
+};
 
 // define table
 var table = new Tabulator("#pick-table", {
