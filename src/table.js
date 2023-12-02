@@ -1,14 +1,14 @@
 import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule} from 'tabulator-tables';
-import Data from './files/week2.csv';
+import Data from './files/week3_results.csv';
 import { dataMethods, playersCount } from './data';
 import { editDom } from './dom';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
 // at wich week are we in the pool
-const week = 2;
+const week = 3;
 // is the file a results file or pick file
-const resultsFile = false;
+const isResultsFile = true;
 // Data is import from csv file
 let arrayData = Data;
 // initialisation of the player data
@@ -39,20 +39,35 @@ const checkIfTeamLost = (row) => {
 
     switch (week) {
         case 1:
-            // logic for week 1
+            if (isResultsFile && data.win == 0) {
+                row.getCell('weekA').getElement().classList.add('grayscale-effect');
+            }
             break;
         case 2:
-            if (resultsFile && data.win == 0) {
+            if (isResultsFile && data.win == 0) {
                 row.getCell('weekB').getElement().classList.add('grayscale-effect');
                 if (data.weekB.trim() === "") {
                     row.getCell('weekA').getElement().classList.add('grayscale-effect');
                 }
-            } else if (!resultsFile && data.weekB.trim() === "") {
+            } else if (!isResultsFile && data.weekB.trim() === "") {
                 row.getCell('weekA').getElement().classList.add('grayscale-effect');
             }
             break;
         case 3:
-            // logic for week 3
+            if (isResultsFile && data.win == 0) {
+                row.getCell('weekC').getElement().classList.add('grayscale-effect');
+                if (data.weekC.trim() === "") {
+                    row.getCell('weekB').getElement().classList.add('grayscale-effect');
+                }
+                if (data.weekB.trim() === "") {
+                    row.getCell('weekA').getElement().classList.add('grayscale-effect');
+                }
+            } else if (!isResultsFile && data.weekC.trim() === "") {
+                row.getCell('weekB').getElement().classList.add('grayscale-effect');
+                if (data.weekB.trim() === "") {
+                    row.getCell('weekA').getElement().classList.add('grayscale-effect');
+                }
+            }
             break;
          case 4:
             // logic for week 4
@@ -101,7 +116,20 @@ var table = new Tabulator("#pick-table", {
             }
             return stringToReturn; //return the contents of the cell;
         }},
-        {title:"25", field:"weekC", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50},
+        {title:"25", field:"weekC", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
+            let stringToReturn = '';
+            let value = cell.getValue();
+
+            if (!(value.trim() === "")) {
+                value = value.toLowerCase();
+                let logo = dataMethods.getLogo(value);
+                dataMethods.incrementCount(value);
+                dataMethods.incrementPlayersCount();
+                cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
+                stringToReturn = `<img src='/src/images/${logo}'>`;
+            }
+            return stringToReturn; //return the contents of the cell;
+        }},
         {title:"2", field:"weekD", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50}
     ],
 });
