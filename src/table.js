@@ -5,11 +5,12 @@ import { editDom } from './dom';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
+// Data is import from csv file
 let arrayData = Data;
-let classToggle = ['currentPlayer', 'a-player'];
-
+// initialisation of the player data
+let playerMetrics = ['currentPlayer', 'a-player', 1];
   
-//define table
+// define table
 var table = new Tabulator("#pick-table", {
     data:arrayData, //Data is the csv files data
     reactiveData:true, //enable reactive data
@@ -19,33 +20,28 @@ var table = new Tabulator("#pick-table", {
     rowFormatter:function(row){
         let data = row.getData(); //get data object for row
         let currentPlayer = data.joueur;
-        classToggle[0] = currentPlayer;
+        playerMetrics[0] = currentPlayer;
 
-        row.getElement().classList.add(classToggle[1]);
+        row.getElement().classList.add(playerMetrics[1]);
+        data.participation = playerMetrics[2];
         
         if (row.getNextRow() && row.getNextRow().getData().joueur != currentPlayer) {
-            if (classToggle[1] == 'a-player') {
-                classToggle[1] = 'another-player';
+            if (playerMetrics[1] == 'a-player') {
+                playerMetrics[1] = 'another-player';
             } else {
-                classToggle[1] = 'a-player';
+                playerMetrics[1] = 'a-player';
             }
-            
+            playerMetrics[2] = 1;   
+        } else {
+            let count = playerMetrics[2];
+            count = count + 1;
+            playerMetrics[2] = count;
         }
-        
     },
     columns:[
         {title:"win", field:"win", frozen:true, visible:false},
         {title:"#", field:"participation", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", sorter:"number", width:40, frozen:true},
-        {title:"JOUEURS", field:"joueur", sorter:"string", headerHozAlign:"center", hozAlign:"left", vertAlign:"middle", formatter:"plaintext", frozen:true,formatter:function(cell, formatterParams, onRendered){
-            //cell - the cell component
-            //formatterParams - parameters set for the column
-            //onRendered - function to call when the formatter has been rendered
-            
-            
-            
-
-            return cell.getValue(); //return the contents of the cell;
-        },},
+        {title:"JOUEURS", field:"joueur", sorter:"string", headerHozAlign:"center", hozAlign:"left", vertAlign:"middle", formatter:"plaintext", frozen:true},
         {title:"11", field:"weekA", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             let value = cell.getValue().toLowerCase();
             let logo = dataMethods.getLogo(value);
