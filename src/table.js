@@ -169,7 +169,7 @@ table.on("dataProcessed", function(){
             {title:"ÉQUIPE", field:"equipe", headerHozAlign:"center", vertAlign:"middle", formatter:function(cell, formatterParams, onRendered){
                 let value = cell.getValue();
                 let logo = dataMethods.getLogo(value);
-                return `<img src='/src/images/${logo}'><div>${value}</div>`; //return the contents of the cell;
+                return `<img src='images/${logo}'><div>${value}</div>`; //return the contents of the cell;
             },},
             {title:"PICK", field:"pick", width:55, hozAlign:"center", headerHozAlign:"center", vertAlign:"middle"},
         ],
