@@ -104,7 +104,7 @@ var table = new Tabulator("#pick-table", {
             dataMethods.incrementPlayersCount();
             cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
 
-            return `<img src='/src/images/${logo}'>`; //return the contents of the cell;
+            return `<img src='images/${logo}'>`; //return the contents of the cell;
         }},
         {title:"18", field:"weekB", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             let stringToReturn = '';
@@ -116,7 +116,7 @@ var table = new Tabulator("#pick-table", {
                 dataMethods.incrementCount(value);
                 dataMethods.incrementPlayersCount();
                 cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
-                stringToReturn = `<img src='./src/images/${logo}'>`;
+                stringToReturn = `<img src='images/${logo}'>`;
             }
             return stringToReturn; //return the contents of the cell;
         }},
@@ -130,7 +130,7 @@ var table = new Tabulator("#pick-table", {
                 dataMethods.incrementCount(value);
                 dataMethods.incrementPlayersCount();
                 cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
-                stringToReturn = `<img src='/src/images/${logo}'>`;
+                stringToReturn = `<img src='images/${logo}'>`;
             }
             return stringToReturn; //return the contents of the cell;
         }},
