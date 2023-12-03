@@ -1,14 +1,14 @@
 import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule} from 'tabulator-tables';
-import Data from './files/week3_results.csv';
+import Data from './files/week4_pick.csv';
 import { dataMethods, playersCount } from './data';
 import { editDom } from './dom';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
 // at wich week are we in the pool
-const week = 3;
+const week = 4;
 // is the file a results file or pick file
-const isResultsFile = true;
+const isResultsFile = false;
 // Data is import from csv file
 let arrayData = Data;
 // initialisation of the player data
@@ -74,12 +74,45 @@ const checkIfTeamLost = (row) => {
             }
             break;
         case 4:
-            // logic for week 4
+            if (isResultsFile && data.win == 0) {
+                addGrayscaleEffect(row.getCell('weekD'));
+                if (data.weekD.trim() === "") {
+                    addGrayscaleEffect(row.getCell('weekC'));
+                }
+                if (data.weekC.trim() === "") {
+                    addGrayscaleEffect(row.getCell('weekB'));
+                }
+                if (data.weekB.trim() === "") {
+                    addGrayscaleEffect(row.getCell('weekA'));
+                }
+            } else if (!isResultsFile && data.weekD.trim() === "") {
+                addGrayscaleEffect(row.getCell('weekC'));
+                if (data.weekC.trim() === "") {
+                    addGrayscaleEffect(row.getCell('weekB'));
+                }
+                if (data.weekB.trim() === "") {
+                    addGrayscaleEffect(row.getCell('weekA'));
+                }
+            }
             break;
         default:
             // Default case for weeks other than the specified ones
     }
 };
+
+const formatCell = (cell, value) => {
+    const logo = dataMethods.getLogo(value);
+    dataMethods.incrementCount(value);
+    dataMethods.incrementPlayersCount();
+    const element = cell.getElement();
+    element.classList.add(value.replace(/\s+/g, '-'));
+
+    return `<img src='images/${logo}'>`;
+}
+
+const isEmpty = (value) => {
+    return value.trim() === "";
+}
 
 // define table
 var table = new Tabulator("#pick-table", {
@@ -98,43 +131,37 @@ var table = new Tabulator("#pick-table", {
         {title:"#", field:"participation", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", sorter:"number", width:40, frozen:true},
         {title:"JOUEURS", field:"joueur", sorter:"string", headerHozAlign:"center", hozAlign:"left", vertAlign:"middle", formatter:"plaintext", frozen:true},
         {title:"11", field:"weekA", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
-            let value = cell.getValue().toLowerCase();
-            let logo = dataMethods.getLogo(value);
-            dataMethods.incrementCount(value);
-            dataMethods.incrementPlayersCount();
-            cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
-
-            return `<img src='images/${logo}'>`; //return the contents of the cell;
+            const value = cell.getValue();
+            //format the selected cell
+            if (!isEmpty(value)) {
+                return formatCell(cell, value.toLowerCase());
+            }
+            return ''; // return an empty string if the cell value is empty
         }},
         {title:"18", field:"weekB", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
-            let stringToReturn = '';
-            let value = cell.getValue();
-
-            if (!(value.trim() === "")) {
-                value = value.toLowerCase();
-                let logo = dataMethods.getLogo(value);
-                dataMethods.incrementCount(value);
-                dataMethods.incrementPlayersCount();
-                cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
-                stringToReturn = `<img src='images/${logo}'>`;
+            const value = cell.getValue();
+            //format the selected cell
+            if (!isEmpty(value)) {
+                return formatCell(cell, value.toLowerCase());
             }
-            return stringToReturn; //return the contents of the cell;
+            return ''; // return an empty string if the cell value is empty
         }},
         {title:"25", field:"weekC", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
-            let stringToReturn = '';
-            let value = cell.getValue();
-
-            if (!(value.trim() === "")) {
-                value = value.toLowerCase();
-                let logo = dataMethods.getLogo(value);
-                dataMethods.incrementCount(value);
-                dataMethods.incrementPlayersCount();
-                cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
-                stringToReturn = `<img src='images/${logo}'>`;
+            const value = cell.getValue();
+            //format the selected cell
+            if (!isEmpty(value)) {
+                return formatCell(cell, value.toLowerCase());
             }
-            return stringToReturn; //return the contents of the cell;
+            return ''; // return an empty string if the cell value is empty
         }},
-        {title:"2", field:"weekD", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50}
+        {title:"2", field:"weekD", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
+            const value = cell.getValue();
+            //format the selected cell
+            if (!isEmpty(value)) {
+                return formatCell(cell, value.toLowerCase());
+            }
+            return ''; // return an empty string if the cell value is empty
+        }}
     ],
 });
 
