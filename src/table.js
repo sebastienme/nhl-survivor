@@ -210,5 +210,6 @@ table.on("dataProcessed", function(){
 
     statsTable.on("tableBuilt", function(){
         editDom.addPlayersCount(playersCount);
+        editDom.addCurrentWeek(week);
     })
 });
