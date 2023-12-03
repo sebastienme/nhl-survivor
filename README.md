@@ -15,6 +15,7 @@ It takes an already provided csv file, transforms the data and displays it on th
 ## Installation
 
 ```bash
-git clone https://github.com/yourusername/your-web-app.git
-cd your-web-app
+git clone https://github.com/sebastienme/nhl-survivor.git
+cd nhl-survivor
 npm install
+npm run build
