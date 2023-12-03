@@ -1,6 +1,8 @@
 # NHL Survivor Pool
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Description
 
