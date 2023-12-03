@@ -1,12 +1,12 @@
 import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule} from 'tabulator-tables';
-import Data from './files/week2_results.csv';
+import Data from './files/week3_results.csv';
 import { dataMethods, playersCount } from './data';
 import { editDom } from './dom';
 
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
 // at wich week are we in the pool
-const week = 2;
+const week = 3;
 // is the file a results file or pick file
 const isResultsFile = true;
 // Data is import from csv file
@@ -116,7 +116,7 @@ var table = new Tabulator("#pick-table", {
                 dataMethods.incrementCount(value);
                 dataMethods.incrementPlayersCount();
                 cell.getElement().classList.add(value.replace(/\s+/g, '-').toLowerCase());
-                stringToReturn = `<img src='/src/images/${logo}'>`;
+                stringToReturn = `<img src='./src/images/${logo}'>`;
             }
             return stringToReturn; //return the contents of the cell;
         }},
