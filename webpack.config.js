@@ -4,8 +4,8 @@ module.exports = {
   entry: './src/index.js',
   devtool: 'inline-source-map',
   output: {
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js', // or your preferred output file name
+    path: path.resolve(__dirname, 'docs'), // output to the 'docs' folder
   },
   module: {
     rules: [
