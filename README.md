@@ -12,7 +12,7 @@ It takes an already provided csv file, transforms the data and displays it on th
 ## Features
 
 -It transforms texts into images and colors
--It provided statistics based on results and picks by poolers
+-It provides statistics based on results and picks by poolers
 
 ## Installation
 
