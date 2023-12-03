@@ -6,7 +6,7 @@ import { editDom } from './dom';
 Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
 
 // at wich week are we in the pool
-const week = 4;
+export const week = 4;
 // is the file a results file or pick file
 const isResultsFile = false;
 // Data is import from csv file
@@ -24,7 +24,7 @@ const updatePlayerMetrics = (row) => {
     data.participation = playerMetrics[2];
 }
 
-// Function to update player metrics for the next row
+// Function that will change class of a row when it is a new player on that row 
 const updateNextRowMetrics = (row) => {
     if (row.getNextRow() && row.getNextRow().getData().joueur !== playerMetrics[0]) {
         playerMetrics[1] = (playerMetrics[1] === 'a-player') ? 'another-player' : 'a-player';
@@ -34,6 +34,8 @@ const updateNextRowMetrics = (row) => {
     }
 }
 
+// Function that check if a team has lost. It knows a team has lost depending on different scenario like which week are we,
+//  if the file is a a type of pick or results and finally if, on the same row, the next week cell is empty. 
 const checkIfTeamLost = (row) => {
     const data = row.getData();
 
@@ -100,12 +102,12 @@ const checkIfTeamLost = (row) => {
     }
 };
 
-const formatCell = (cell, value) => {
+// Function that format the cell of the weeks columns base on the value provided in the csv file. 
+const formatCell = (cell, value, currentWeek) => {
     const logo = dataMethods.getLogo(value);
-    dataMethods.incrementCount(value);
-    dataMethods.incrementPlayersCount();
     const element = cell.getElement();
     element.classList.add(value.replace(/\s+/g, '-'));
+    (currentWeek === week) && (dataMethods.incrementPlayersCount(), dataMethods.incrementCount(value));
 
     return `<img src='images/${logo}'>`;
 }
@@ -132,33 +134,37 @@ var table = new Tabulator("#pick-table", {
         {title:"JOUEURS", field:"joueur", sorter:"string", headerHozAlign:"center", hozAlign:"left", vertAlign:"middle", formatter:"plaintext", frozen:true},
         {title:"11", field:"weekA", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             const value = cell.getValue();
+            const WEEK = 1;
             //format the selected cell
             if (!isEmpty(value)) {
-                return formatCell(cell, value.toLowerCase());
+                return formatCell(cell, value.toLowerCase(), WEEK);
             }
             return ''; // return an empty string if the cell value is empty
         }},
         {title:"18", field:"weekB", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             const value = cell.getValue();
+            const WEEK = 2;
             //format the selected cell
             if (!isEmpty(value)) {
-                return formatCell(cell, value.toLowerCase());
+                return formatCell(cell, value.toLowerCase(), WEEK);
             }
             return ''; // return an empty string if the cell value is empty
         }},
         {title:"25", field:"weekC", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             const value = cell.getValue();
+            const WEEK = 3;
             //format the selected cell
             if (!isEmpty(value)) {
-                return formatCell(cell, value.toLowerCase());
+                return formatCell(cell, value.toLowerCase(), WEEK);
             }
             return ''; // return an empty string if the cell value is empty
         }},
         {title:"2", field:"weekD", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             const value = cell.getValue();
+            const WEEK = 4;
             //format the selected cell
             if (!isEmpty(value)) {
-                return formatCell(cell, value.toLowerCase());
+                return formatCell(cell, value.toLowerCase(), WEEK);
             }
             return ''; // return an empty string if the cell value is empty
         }}

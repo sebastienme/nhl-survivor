@@ -1,5 +1,6 @@
 import Data from './files/team.csv';
-import { editDom } from './dom';
+import { week } from './table';
+
 // Initialise the list of all the NHL teams
 export var teamsList = [];
 export var playersCount = 0;
@@ -117,7 +118,7 @@ export const dataMethods = (() => {
   };
 
   // Count number of players left in the pool
-  const incrementPlayersCount = () => {
+  const incrementPlayersCount = (week) => {
     playersCount++;
   }
   

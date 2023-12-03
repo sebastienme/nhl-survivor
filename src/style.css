@@ -92,9 +92,8 @@ a {
 }
 
 .header__logo {
-    height: auto;
-    width: 150px;
-    margin: 25px;
+    height: 90%;
+    width: auto;
 }
 
 .divider {
@@ -106,8 +105,11 @@ a {
 .header__title {
     display: flex;
     justify-content: center;
+    align-items: center;
     margin-top: 25px;
     margin-bottom: 25px;
+    height: 100px;
+    gap: 15px;
 }
 
 .header__title__text {
@@ -150,7 +152,12 @@ a {
 
 .tabulator {
     border-color: #c5c5c5;
-} 
+
+}
+
+#stats-table .tabulator-cell[tabulator-field="equipe"] {
+    font-size: var(--small-text);
+}
 
 .tabulator .tabulator-header,
 .tabulator .tabulator-header .tabulator-col {
