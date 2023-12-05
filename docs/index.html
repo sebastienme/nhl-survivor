@@ -15,21 +15,39 @@
         </div>
         <div class="header__badge">
             <div class="header__stats-section">
-                <div class="header__stats-section__top-section">
-                    <div class="header__stats-section__top-section__flex-1">
-                        <div class="header__stats-section__top">Semaine</div>
-                        <div class="header__stats-section__top-result stats-results"></div>
+                <div class="header__stats-section-top">
+                    <div class="header__stats-section-top-section section-title">
+                        <span>Sommaire</span>
+                        <div class="divider"></div>
                     </div>
-                    <div class="header__stats-section__top-section__flex-2">
-                        <div class="header__stats-section__top">Picks restants</div>
-                        <div class="header__stats-section__list__item__result stats-results"></div>
+                    <div class="header__stats-section__top-section">
+                        <div class="header__stats-section__top-section__flex-1">
+                            <div class="header__stats-section__top">Semaine</div>
+                            <div class="header__stats-section__top-result stats-results"></div>
+                        </div>
+                        <div class="header__stats-section__top-section__flex-2">
+                            <div class="header__stats-section__top">Picks restants</div>
+                            <div class="header__stats-section__list__item__result stats-results"></div>
+                        </div>
                     </div>
                 </div>
-                <div id="stats-table"></div>
+                <div class="header__stats-section-middle">
+                    <div class="header__stats-section-middle-section section-title">
+                        <span>Top 3 picks</span>
+                        <div class="divider"></div>
+                    </div>
+                    <div id="stats-table"></div>
+                </div>
+                <div class="header__stats-sectio-bottom-section section-title">
+                    <span>Tous les picks</span>
+                    <div class="divider"></div>
+                </div>
             </div>
         </div>
     </header>
-    <main><div id="pick-table"></div></main>
+    <main>
+        <div id="pick-table"></div>
+    </main>
     <footer></footer>
     <script src="./bundle.js"></script>
 </body>

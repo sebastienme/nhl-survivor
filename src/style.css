@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Orbitron:wght@400;500;600;700;800;900&family=Sintony:wght@400;700&display=swap');
 @import  "tabulator-tables";
 
 * {
@@ -31,7 +31,7 @@ html {
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Sintony', sans-serif;
     font-weight: 400;
     color: white;
     background-color: var(--dark-color);
@@ -93,13 +93,14 @@ a {
 }
 
 .header__logo {
-    height: 90%;
-    width: auto;
+    height: auto;
+    width: 100px;
 }
 
 .divider {
     position: relative;
-    width: 250px;
+    margin-top: 10px;
+    width: 150px;
     border-top: 1px solid white;
 }
 
@@ -107,24 +108,25 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 25px;
-    margin-bottom: 25px;
-    height: 100px;
+    height: 150px;
+    width: 100%;
     gap: 15px;
+    background-color: #00205b;
 }
 
 .header__title__text {
     text-transform: uppercase;
     font-weight: 900;
     font-size: var(--h1-text);
-    font-family: 'Epilogue', sans-serif;
+    font-family: 'Inter', sans-serif;
     text-align: center;
     width: 250px;
 }
 
 .header__badge {
     width: -webkit-fill-available;
-    border-radius: 15px;
+    background: rgb(0,32,91);
+    background: linear-gradient(180deg, rgba(0,32,91,1) 0%, rgba(0,0,0,1) 100%);
 }
 
 .header__stats-section {
@@ -145,6 +147,15 @@ a {
     margin-top: 25px;
 }
 
+.section-title > span {
+    font-size: var(--h4-text);
+    font-family: 'Sintony', sans-serif;
+    font-weight: 700;
+}
+
+.header__stats-section-top {
+    padding-top: 10px;
+}
 
 .header__stats-section__top {
     color: white;
@@ -176,6 +187,24 @@ a {
 
 }
 
+.header__stats-section-middle {
+    padding-bottom: 5px;
+    padding-top: 15px;
+}
+
+.header__stats-sectio-bottom-section {
+    margin-top: 25px;
+}
+
+.header__stats-sectio-bottom-section .divider {
+    width: 200px;
+}
+
+#stats-table {
+    margin-bottom: 35px;
+    margin-top: 35px;
+}
+
 #stats-table .tabulator-cell[tabulator-field="equipe"] {
     font-size: var(--small-text);
 }
@@ -184,7 +213,13 @@ a {
 .tabulator .tabulator-header .tabulator-col {
     border-color: #c5c5c5;
     color: #dfdfdf;
-    background-color: #1d191a;
+    background-color: #0a0a0a;
+    font-weight: 600;
+}
+
+.tabulator .tabulator-header .tabulator-col {
+    height: 40px;
+    justify-content: center;
 }
 
 #stats-table .tabulator-cell {
