@@ -121,7 +121,6 @@ var table = new Tabulator("#pick-table", {
     data:arrayData, //Data is the csv files data
     reactiveData:true, //enable reactive data
     importFormat:"array",
-    frozenRows:0,
     rowHeight:40,
     rowFormatter:function(row){
         updatePlayerMetrics(row);
