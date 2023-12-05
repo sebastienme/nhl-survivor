@@ -1,9 +1,9 @@
-import {Tabulator, FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule} from 'tabulator-tables';
+import {Tabulator, FormatModule, EditModule, ImportModule, FrozenColumnsModule, ReactiveDataModule} from 'tabulator-tables';
 import Data from './files/week4_pick.csv';
 import { dataMethods, playersCount } from './data';
 import { editDom } from './dom';
 
-Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenRowsModule, FrozenColumnsModule, ReactiveDataModule, ResizeColumnsModule]);
+Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenColumnsModule, ReactiveDataModule]);
 
 // at wich week are we in the pool
 export const week = 4;
