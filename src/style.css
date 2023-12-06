@@ -15,7 +15,7 @@
     --h3-text: 1.953rem;
     --h4-text: 1.563rem;
     --h5-text: 1.25rem;
-    --small-text: 0.8rem;
+    --small-text: 0.72rem;
     --smaller-text: 0.64rem;
     --smallest-text: 0.512rem;
     --main-color: #c10828;
@@ -269,6 +269,10 @@ a {
 
 #pick-table .tabulator-table .tabulator-row.another-player {
     background-color: #dbdbdb;
+}
+
+#pick-table .tabulator-cell[tabulator-field="joueur"] {
+    font-size: var(--small-text);
 }
 
 /* Color the border cells */
