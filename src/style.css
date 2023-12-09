@@ -18,7 +18,7 @@
     --small-text: 0.72rem;
     --smaller-text: 0.64rem;
     --smallest-text: 0.512rem;
-    --main-color: #c10828;
+    --main-color: rgb(0,32,91);
     --text-color: #0d0607;
     --dark-color: #2b2b2b;
     --third-color: #b9e937;
@@ -34,7 +34,6 @@ body {
     font-family: 'Sintony', sans-serif;
     font-weight: 400;
     color: white;
-    background-color: var(--dark-color);
 }
 
 a {
@@ -88,8 +87,7 @@ a {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    background: rgb(13,6,7);
-    background: linear-gradient(180deg, rgba(13,6,7,1) 0%, rgba(193,8,40,1) 100%);
+    background-color: var(--main-color);
 }
 
 .header__logo {
@@ -111,7 +109,6 @@ a {
     height: 150px;
     width: 100%;
     gap: 15px;
-    background-color: #00205b;
 }
 
 .header__title__text {
@@ -131,7 +128,7 @@ a {
 
 .header__stats-section {
     width: -webkit-fill-available;
-    margin: 15px 25px 40px 25px;
+    padding: 15px 25px 40px 25px;
 }
 
 .header__stats-section__list__item__logo {
@@ -553,4 +550,94 @@ a {
 
 .winnipeg-jets img, .winnipeg-jets {
     background-color: #002e63;
+}
+
+@media only screen and (max-width: 365px) {
+    .header__title__text {
+        font-size: var(--h2-text);
+    }
+
+}
+
+@media only screen and (min-width: 768px) {
+    body {
+        background: rgb(0,32,91);
+        background: linear-gradient(180deg, rgba(0,32,91,1) 0%, rgba(0,0,0,1) 100%);
+    }
+    
+    .header {
+        background-color: transparent;
+    }
+
+    .main-index {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .header__badge {
+        background-color: none;
+        background: none;
+    }
+
+    .section-title > span {
+        font-size: var(--jumbo-text);
+        line-height: 1;
+    }
+
+    .header__stats-section__top {
+        font-size: var(--small-text);
+    }
+
+    .stats-results {
+        font-size: var(--jumbo-text);
+    }
+
+    .header__stats-section {
+        padding-left: 100px;
+    }
+
+    .header__stats-section__top-section {
+        justify-content: center;
+        gap: 150px;
+        margin-top: 50px;
+    }
+
+    .stats-table-flex {
+        display: flex;
+        justify-content: center;
+    }
+
+    .stats-table-size {
+        min-width: 450px;
+    }
+
+    #stats-table {
+        width: -webkit-fill-available;
+        margin-top: 55px;
+    }
+
+    #stats-table .tabulator-cell[tabulator-field="equipe"] {
+        font-size: 1rem;
+    }
+
+    .header__stats-sectio-bottom-section.section-title {
+        display: none;
+    }
+
+    .divider {
+        display: none;
+    }
+
+    .pick-table-flex {
+        display: flex;
+    }
+
+    .pick-table-size {
+        max-width: 700px;
+    }
+
+    #pick-table {
+        margin-top: 25px;
+    }
+
 }

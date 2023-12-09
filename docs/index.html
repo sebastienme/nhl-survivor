@@ -13,6 +13,8 @@
             <div class="header__title__text">NHL Pool Survivor</div>
             <img class="header__logo" src="images/pool-logo.png" alt="">
         </div>
+    </header>
+    <main class="main-index">
         <div class="header__badge">
             <div class="header__stats-section">
                 <div class="header__stats-section-top">
@@ -36,7 +38,11 @@
                         <span>Top 3 picks</span>
                         <div class="divider"></div>
                     </div>
-                    <div id="stats-table"></div>
+                    <div class="stats-table-flex">
+                        <div class="stats-table-size">
+                            <div id="stats-table"></div>
+                        </div>
+                    </div>
                 </div>
                 <div class="header__stats-sectio-bottom-section section-title">
                     <span>Tous les picks</span>
@@ -44,9 +50,11 @@
                 </div>
             </div>
         </div>
-    </header>
-    <main>
-        <div id="pick-table"></div>
+        <div class="pick-table-flex">
+            <div class="pick-table-size">
+                <div id="pick-table"></div>
+            </div>
+        </div>
     </main>
     <footer></footer>
     <script src="./bundle.js"></script>
