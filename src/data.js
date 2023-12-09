@@ -13,108 +13,145 @@ const Team = (team, count, properName) => {
 
 export const dataMethods = (() => {
   // Get logo png image
-  const getLogo = (team) => {
+  const getTeam = (team) => {
+    let teamAssets = { teamName: '', img: '' };
     let img;
+    let title;
     switch (true) {
-      case team.includes('anaheim'):
-        img = 'ducks-logo.png';
+      case team.includes('anah'):
+          title = 'Anaheim Ducks';
+          img = 'ducks-logo.png';
         break;
-      case team.includes('arizona'):
+      case team.includes('coyote'):
+        title = 'Arizona Coyotes';
         img = 'arizona-logo.png';
         break;
       case team.includes('boston'):
+        title = 'Boston Bruins';
         img = 'boston-bruins-logo.png';
         break;
       case team.includes('buffalo'):
+        title = 'Buffalo Sabres';
         img = 'buffalo-logo.png';
         break;
       case team.includes('calgary'):
+        title = 'Calgary Flames';
         img = 'calgary-logo.png';
         break;
       case team.includes('carolin'):
+        title = 'Carolina Hurricanes';
         img = 'carolina-logo.png';
         break;
       case team.includes('chicago'):
+        title = 'Chicago Blackhawks';
         img = 'chicago-blackhawks-logo.png';
         break;
-      case team.includes('colorado'):
+      case team.includes('avala'):
+        title = 'Colorado Avalanche';
         img = 'colorado-logo.png';
         break;
       case team.includes('columbus'):
+        title = 'Columbus Blue Jackets';
         img = 'columbus-logo.png';
         break;
       case team.includes('dallas'):
+        title = 'Dallas Stars';
         img = 'dallas-logo.png';
         break;
       case team.includes('detroit'):
+        title = 'Detroit Red Wings';
         img = 'detroit-logo.png';
         break;
       case team.includes('edmonton'):
+        title = 'Edmonton Oilers';
         img = 'edmonton-logo.png';
         break;
       case team.includes('florid'):
+        title = 'Florida Panthers';
         img = 'florida-logo.png';
         break;
-      case team.includes('los angeles'):
+      case team.includes('kings'):
+        title = 'Los Angeles Kings';
         img = 'los-angeles-kings-logo.png';
         break;
-      case team.includes('minnes'):
+      case team.includes('wild'):
+        title = 'Minnesota Wild';
         img = 'minnesota-logo.png';
         break;
       case team.includes('montr'):
+        title = 'Montreal Canadiens';
         img = 'montreal-logo.png';
         break;
       case team.includes('nash'):
+        title = 'Nashville Predators';
         img = 'nashville-logo.png';
         break;
       case team.includes('jersey'):
+        title = 'New Jersey Devils';
         img = 'new-jersey-logo.png';
         break;
-      case team.includes('islanders'):
+      case team.includes('isla'):
+        title = 'New York Islanders';
         img = 'new-york-islanders-logo.png';
         break;
-      case team.includes('rangers'):
+      case team.includes('ranger'):
+        title = 'New York Rangers';
         img = 'new-york-rangers-logo.png';
         break;
       case team.includes('ottawa'):
+        title = 'Ottawa Senators';
         img = 'ottawa-logo.png';
         break;
       case team.includes('phila'):
+        title = 'Philadelphia Flyers';
         img = 'philadelphia-logo.png';
         break;
-      case team.includes('pitts'):
+      case team.includes('pitt'):
+        title = 'Pittsburgh Penguins';
         img = 'pittsburgh-penguins-logo.png';
         break;
-      case team.includes('san jose'):
+      case team.includes('shark'):
+        title = 'San Jose Sharks';
         img = 'san-jose-logo.png';
         break;
-      case team.includes('seat'):
+      case team.includes('krak'):
+        title = 'Seattle Kraken';
         img = 'kraken-logo.png';
         break;
       case team.includes('louis'):
+        title = 'St-Louis Blues';
         img = 'st-louis-logo.png';
         break;
       case team.includes('tampa'):
+        title = 'Tampa Bay Lightning';
         img = 'TBL_dark.svg';
         break;
       case team.includes('toronto'):
+        title = 'Toronto Maple Leafs';
         img = 'toronto-logo.png';
         break;
       case team.includes('vancouv'):
+        title = 'Vancouver Canucks';
         img = 'vancouver-logo.png';
         break;
       case team.includes('vegas'):
+        title = 'Vegas Golden Knights';
         img = 'vegas-logo.png';
         break;
       case team.includes('wash'):
+        title = 'Washington Capitals';
         img = 'washington-capitals-logo.png';
         break;
-      case team.includes('winnipeg'):
+      case team.includes('jets'):
+        title = 'Winnipeg Jets';
         img = 'winnipeg-logo.png';
         break;
       default:
     }
-    return img;
+    teamAssets.teamName = title;
+    teamAssets.img = img;
+
+    return teamAssets;
   };
 
   // Count number of players left in the pool
@@ -150,7 +187,7 @@ export const dataMethods = (() => {
   }
 
   return {
-    getLogo,
+    getTeam,
     incrementPlayersCount,
     initialiseTeamsList,
     incrementCount,

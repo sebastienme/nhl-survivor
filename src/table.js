@@ -254,12 +254,13 @@ const tableMethods = (() => {
 
     // Function that format the cell of the weeks columns base on the value provided in the csv file. 
     const formatCell = (cell, value, currentWeek) => {
-        const logo = dataMethods.getLogo(value);
+        const teamAssets = dataMethods.getTeam(value);
+        const teamName = teamAssets.teamName.toLowerCase();
         const element = cell.getElement();
-        element.classList.add(value.replace(/\s+/g, '-'));
-        (currentWeek === week) && (dataMethods.incrementPlayersCount(), dataMethods.incrementCount(value));
+        element.classList.add(teamName.toLowerCase().replace(/\s+/g, '-'));
+        (currentWeek === week) && (dataMethods.incrementPlayersCount(), dataMethods.incrementCount(teamName.toLowerCase()));
 
-        return `<img src='images/${logo}'>`;
+        return `<img src='images/${teamAssets.img}'>`;
     }
 
     // Check is the string has no character and return an empty string
@@ -414,8 +415,8 @@ table.on("dataProcessed", function(){
             {title:"#", field:"position", width:25, headerHozAlign:"center", hozAlign:"center", vertAlign:"middle"},
             {title:"ÉQUIPE", field:"equipe", headerHozAlign:"center", vertAlign:"middle", formatter:function(cell, formatterParams, onRendered){
                 let value = cell.getValue();
-                let logo = dataMethods.getLogo(value);
-                return `<img src='images/${logo}'><div>${value}</div>`; //return the contents of the cell;
+                let teamAssets = dataMethods.getTeam(value);
+                return `<img src='images/${teamAssets.img}'><div>${value}</div>`; //return the contents of the cell;
             },},
             {title:"PICK", field:"pick", width:55, hozAlign:"center", headerHozAlign:"center", vertAlign:"middle"},
         ],
