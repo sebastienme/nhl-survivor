@@ -201,6 +201,52 @@ const tableMethods = (() => {
                     }
                 }
                 break;
+            case 8:
+                if (isResultsFile && data.win == 0) {
+                    addGrayscaleEffect(row.getCell('weekH'));
+                    if (data.weekH.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekG'));
+                    }
+                    if (data.weekG.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekF'));
+                    }
+                    if (data.weekF.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekE'));
+                    }
+                    if (data.weekE.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekD'));
+                    }
+                    if (data.weekD.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekC'));
+                    }
+                    if (data.weekC.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekB'));
+                    }
+                    if (data.weekB.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekA'));
+                    }
+                } else if (!isResultsFile && data.weekG.trim() === "") {
+                    addGrayscaleEffect(row.getCell('weekG'));
+                    if (data.weekG.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekF'));
+                    }
+                    if (data.weekF.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekE'));
+                    }
+                    if (data.weekE.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekD'));
+                    }
+                    if (data.weekD.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekC'));
+                    }
+                    if (data.weekC.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekB'));
+                    }
+                    if (data.weekB.trim() === "") {
+                        addGrayscaleEffect(row.getCell('weekA'));
+                    }
+                }
+                break;
             default:
                 // Default case for weeks other than the specified ones
         }
@@ -307,7 +353,7 @@ var table = new Tabulator("#pick-table", {
                 return tableMethods.formatCell(cell, value.toLowerCase(), WEEK);
             }
             return ''; // return an empty string if the cell value is empty
-        }},/*
+        }},
         {title:"30", field:"weekH", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             const value = cell.getValue();
             const WEEK = 8;
@@ -316,7 +362,7 @@ var table = new Tabulator("#pick-table", {
                 return tableMethods.formatCell(cell, value.toLowerCase(), WEEK);
             }
             return ''; // return an empty string if the cell value is empty
-        }},
+        }},/*
         {title:"6", field:"weekI", hozAlign:"center", headerHozAlign:"center", vertAlign:"middle", width:50, formatter:function(cell, formatterParams, onRendered){
             const value = cell.getValue();
             const WEEK = 9;
