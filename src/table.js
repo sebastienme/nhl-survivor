@@ -260,7 +260,7 @@ const tableMethods = (() => {
         element.classList.add(teamName.toLowerCase().replace(/\s+/g, '-'));
         (currentWeek === week) && (dataMethods.incrementPlayersCount(), dataMethods.incrementCount(teamName.toLowerCase()));
 
-        return `<img src='images/${teamAssets.img}'>`;
+        return `<img src='/docs/images/${teamAssets.img}'>`;
     }
 
     // Check is the string has no character and return an empty string
@@ -416,7 +416,7 @@ table.on("dataProcessed", function(){
             {title:"ÉQUIPE", field:"equipe", headerHozAlign:"center", vertAlign:"middle", formatter:function(cell, formatterParams, onRendered){
                 let value = cell.getValue();
                 let teamAssets = dataMethods.getTeam(value);
-                return `<img src='images/${teamAssets.img}'><div>${value}</div>`; //return the contents of the cell;
+                return `<img src='/docs/images/${teamAssets.img}'><div>${value}</div>`; //return the contents of the cell;
             },},
             {title:"PICK", field:"pick", width:55, hozAlign:"center", headerHozAlign:"center", vertAlign:"middle"},
         ],
