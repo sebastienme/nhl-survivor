@@ -1,5 +1,5 @@
 import {Tabulator, FormatModule, EditModule, ImportModule, FrozenColumnsModule, ReactiveDataModule} from 'tabulator-tables';
-import Data from './files/week5_pick.csv';
+import Data from './files/week5_results.csv';
 import { dataMethods, playersCount } from './data';
 import { editDom } from './dom';
 
@@ -8,7 +8,7 @@ Tabulator.registerModule([FormatModule, EditModule, ImportModule, FrozenColumnsM
 // at wich week are we in the pool
 export const week = 5;
 // is the file a results file or pick file
-const isResultsFile = false;
+const isResultsFile = true;
 // Data is import from csv file
 let arrayData = Data;
 // initialisation of the player data
